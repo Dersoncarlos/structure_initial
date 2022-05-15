@@ -3,6 +3,7 @@ version: '3.3'
 services:
   webserver:
     image: nginx:alpine
+    restart: always
     container_name: manchadetinta-nginx
     working_dir: /src
     volumes:
@@ -13,6 +14,7 @@ services:
 
   php-fpm:
     build: .docker/php-fpm
+    restart: always
     container_name: manchadetinta_php74
     working_dir: /src
     expose:
@@ -21,9 +23,13 @@ services:
       - ./:/src
 
   database:
+    container_name: manchadetinta_db
     build: .docker/db
     volumes:
       - db-volume:/var/lib/mysql
+    ports: 
+      - '3306:3306'
+    restart: always
       
 volumes:
     db-volume:
