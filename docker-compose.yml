@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  webserver:
+    image: nginx:alpine
+    container_name: manchadetinta-nginx
+    working_dir: /src
+    volumes:
+      - ./:/src
+      - .docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8181:80
+
+  php-fpm:
+    build: .docker/php-fpm
+    container_name: manchadetinta_php74
+    working_dir: /src
+    expose:
+      - 9000
+    volumes:
+      - ./:/src
+
+  database:
+    build: .docker/db
+    volumes:
+      - db-volume:/var/lib/mysql
+      
+volumes:
+    db-volume:

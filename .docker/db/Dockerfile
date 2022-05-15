@@ -1,0 +1,10 @@
+# Derivando da imagem oficial do MySQL
+FROM mysql:5.7
+
+ENV MYSQL_ROOT_PASSWORD: root
+ENV MYSQL_DATABASE: bd
+ENV MYSQL_USER: user
+ENV MYSQL_PASSWORD: pass
+
+EXPOSE 3306
+CMD ["mysqld"]
