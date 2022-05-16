@@ -29,7 +29,11 @@ services:
       - db-volume:/var/lib/mysql
     ports: 
       - '3306:3306'
-    restart: always
-      
+    environment:
+      MYSQL_ROOT_PASSWORD: 2YT3DbaENpT9uoRByR
+      MYSQL_DATABASE: theinkstain
+      MYSQL_USER: manchinha2020
+      MYSQL_PASSWORD: 2YT3DbaENpT9uoRByR
+    restart: always  
 volumes:
     db-volume:
